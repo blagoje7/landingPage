@@ -1,0 +1,60 @@
+/* Tell Tailwind to load (v4) */
+@import "tailwindcss";
+
+/* Make all Tailwind utilities available to @apply in THIS file */
+@reference "tailwindcss";
+
+/* Optional: tell Tailwind where to scan for class names (v4 content replacement).
+   If Astro integration already handles this, you can omit. Keeping it here is safe.
+*/
+@source "../**/*.{astro,html,js,jsx,ts,tsx,vue,svelte}";
+
+/* ---------- Brand theme tokens (v4 uses CSS variables) ---------- */
+@theme {
+  /* Colors become usable as bg-brand-gold, text-brand-gold, etc. */
+  --color-brand-gold: #fcb603;
+  --color-brand-white: #ffffff;
+
+  /* Extras for the “futuristic” styling */
+  --color-faint: rgba(0,0,0,0.06);
+
+  /* Custom shadows usable via shadow-soft / shadow-glow */
+  --shadow-soft: 0 10px 30px -10px rgba(0,0,0,0.08);
+  --shadow-glow: 0 0 0 4px rgba(252,182,3,0.20);
+
+  /* Optional tiny backdrop blur token (used via backdrop-blur-[2px]) */
+}
+
+/* ---------- Global background with subtle futuristic wash ---------- */
+body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(252,182,3,0.08), transparent 40%),
+    radial-gradient(800px 400px at -10% 10%, rgba(0,0,0,0.04), transparent 40%),
+    var(--color-brand-white);
+}
+
+/* ---------- Reusable utilities via @apply (now valid with @reference) ---------- */
+.container-page { @apply max-w-5xl mx-auto px-6; }
+
+.btn-primary {
+  @apply inline-flex items-center justify-center px-5 py-3 rounded
+         bg-brand-gold text-black font-medium shadow hover:shadow-md
+         transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-gold;
+}
+
+.nav-link {
+  @apply text-sm text-gray-800 hover:text-black/80
+         focus:outline-none focus:ring-2 focus:ring-brand-gold rounded px-1 transition;
+}
+
+.badge-gold { @apply inline-block h-1 w-16 bg-brand-gold rounded; }
+
+.card { @apply bg-white border border-[var(--color-faint)] rounded-lg shadow-sm hover:shadow-md transition; }
+
+.link-gold { @apply text-brand-gold hover:underline; }
+
+/* “Glassy” surface for header */
+.surface-glass { @apply bg-brand-white/80 backdrop-blur-[2px]; }
+
+/* Faint divider */
+.hr-faint { @apply border-t border-[var(--color-faint)]; }

@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ContactForm from "../components/ContactForm.astro";
+import Services from "../components/Services.astro";
+import About from "../components/About.astro";
+import Gallery from "../components/Gallery.astro";
+
+const images = Array.from({ length: 12 }, (_, i) => {
+  const n = String(i + 1).padStart(2, "0");
+  return { src: `/images/gallery/slide-${n}.jpg`, alt: `Clinic photo ${n}` };
+});
+---
+
+<BaseLayout
+  title="Auto Moto Klub - Ruma"
+  description="Tehnički pregled, kompletna registracija vozila, prenos vlasništva, osiguranje, zeleni kartoni, paketi pomoći na putu, auto servis i još mnogo toga."
+>
+  <Header />
+
+  <!-- BODY intentionally minimal/empty; reserved for future sections -->
+  <main class="container-page py-24">
+  
+    <Gallery />
+    
+  </main>
+
+  
+  <Services />
+  <About />
+  <ContactForm />
+  <Footer />
+</BaseLayout>

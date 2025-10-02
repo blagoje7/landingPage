@@ -1,0 +1,48 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  jsonLd?: Record<string, any> | null;
+}
+
+import "../styles/global.css";
+
+const site = {
+  name: "AUTO MOTO KLUB - Ruma",
+  domain: "https://amkruma.rs",
+  image: "/og-cover.jpg"
+};
+
+const {
+  title = "Auto Moto Klub - Ruma",
+  description = "AUTO MOTO KLUB - Ruma",
+  canonical,
+  jsonLd = null
+} = Astro.props;
+
+const finalCanonical = canonical ?? new URL(Astro.url.pathname, site.domain).href;
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={finalCanonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={site.image} />
+    <meta property="og:url" content={finalCanonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>}
+  </head>
+  <body class="min-h-screen text-gray-900 antialiased">
+    <slot />
+  </body>
+</html>

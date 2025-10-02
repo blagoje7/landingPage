@@ -1,0 +1,62 @@
+---
+/**
+ * Zero props. Assumes 12 images at:
+ * public/images/gallery/slide-01.jpg ... slide-12.jpg
+ */
+const id = `gal-${Math.random().toString(36).slice(2, 8)}`;
+
+const images = Array.from({ length: 12 }, (_, i) => {
+  const n = String(i + 1).padStart(2, "0");
+  return { src: `/images/gallery/slide-${n}.jpg`, alt: `Gallery image ${n}` };
+});
+---
+
+<section id={id} class="relative select-none" aria-label="Image gallery">
+  <!-- Viewport: native horizontal scroller + scroll-snap -->
+  <div
+    id={`${id}-vp`}
+    class="relative overflow-x-auto overflow-y-hidden rounded-lg snap-x snap-mandatory scroll-smooth no-scrollbar"
+    style="scrollbar-width:none"
+    aria-roledescription="carousel"
+  >
+    <div class="flex">
+      {images.map((img, i) => (
+        <div class="basis-full shrink-0 snap-start bg-black/5">
+          <div class="aspect-[16/9] w-full h-full">
+            <img
+              src={img.src}
+              alt={img.alt}
+              class="block w-full h-full object-contain"
+              loading={i === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Visible, clickable arrow buttons -->
+  <button
+    id={`${id}-prev`}
+    type="button"
+    class="z-50 absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-black/10 bg-white/90 px-3 py-2 shadow-sm hover:bg-white focus:outline-none focus:ring-2"
+    aria-label="Previous slide"
+  >‹</button>
+
+  <button
+    id={`${id}-next`}
+    type="button"
+    class="z-50 absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-black/10 bg-white/90 px-3 py-2 shadow-sm hover:bg-white focus:outline-none focus:ring-2"
+    aria-label="Next slide"
+  >›</button>
+</section>
+
+<style>
+  /* Hide scrollbars (still scrollable) */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+</style>
+
+<!-- Wire up logic from a JS module in public/scripts/ -->
+<script type="module" src="/scripts/gallery.js" onload={`initGallery("${id}")`}></script>
+<script set:html={`initGallery("${id}");`}></script>

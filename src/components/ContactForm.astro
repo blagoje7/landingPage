@@ -1,0 +1,50 @@
+
+
+
+<section id="contact" class="container-page py-20">
+  <h2 class="text-3xl font-semibold text-center text-gray-900">Kontakt</h2>
+  <span class="badge-gold mx-auto mt-3"></span>
+
+  <label class="grid gap-1 mt-8">
+    <span class="text-xl mx-auto text-gray-700"><strong>Radno vreme:</strong></span>
+    <span class="text-xl mx-auto text-gray-700"><strong>Pon-Pet 07-15h</strong></span>
+    <span class="text-xl mx-auto text-gray-700"><strong>Sub 08-14h</strong></span>
+    <span class="text-xl mx-auto text-gray-700"><strong>Nedelja neradni dan.</strong></span>
+  </label>
+
+  <label class="grid gap-1 mt-8"> 
+    <span class="text-xl mx-auto text-gray-700"><strong>Telefon: 069 870 45 55 </strong></span>
+    <span class="text-xl mx-auto text-gray-700"><strong>Telefon: 022 479 333</strong></span>
+    <span class="text-xl mx-auto text-gray-700"><strong>Adresa: Vladimira Nazora 35</strong></span>
+    <span class="text-xl mx-auto text-gray-700"><strong>Poštanski broj: 22400 · Ruma</strong></span>
+  </label>
+
+  <form method="POST" action="/api/contact"  class="mt-10 max-w-2xl mx-auto grid gap-5">
+    <label class="grid gap-1">
+      <span class="text-sm text-gray-700">Ime</span>
+      <input class="card p-3" type="text" name="name" required />
+    </label>
+
+    <label class="grid gap-1">
+      <span class="text-sm text-gray-700">Email</span>
+      <input class="card p-3" type="email" name="email" required />
+    </label>
+
+    <label class="grid gap-1">
+      <span class="text-sm text-gray-700">Broj telefona</span>
+      <input class="card p-3" type="tel" name="phone" inputmode="tel" />
+    </label>
+
+    <label class="grid gap-1">
+      <span class="text-sm text-gray-700">Poruka</span>
+      <textarea class="card p-3" name="message" rows="6" required></textarea>
+    </label>
+
+    <label class="grid gap-1"> 
+      <span class="text-sm text-gray-700">Odgovor cete dobiti na email koji ste naveli ili SMS porukom u najkracem mogucem roku.</span>
+    </label>
+
+    <button class="btn-primary w-fit">Pošalji</button>
+    
+  </form>
+</section>
