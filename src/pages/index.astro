@@ -2,10 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import ContactForm from "../components/ContactForm.astro";
 import Services from "../components/Services.astro";
 import About from "../components/About.astro";
 import Gallery from "../components/Gallery.astro";
+import Contact from "../components/Contact.astro";
 
 const images = Array.from({ length: 12 }, (_, i) => {
   const n = String(i + 1).padStart(2, "0");
@@ -29,6 +29,6 @@ const images = Array.from({ length: 12 }, (_, i) => {
   
   <Services />
   <About />
-  <ContactForm />
+  <Contact />
   <Footer />
 </BaseLayout>
